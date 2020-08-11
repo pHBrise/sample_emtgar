@@ -1,0 +1,11 @@
+framework module emtgar {
+  umbrella header "emtgar.h"
+
+  export *
+  module * { export * }
+}
+
+module emtgar.Swift {
+    header "emtgar-Swift.h"
+    requires objc
+}

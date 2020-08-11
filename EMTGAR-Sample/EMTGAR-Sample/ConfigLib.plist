@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>KUDAN_KEY</key>
+	<string>XBbvHPsJVyqj4FP4WHh1DEWhAYYMWd5XQptyhZF2EaSjnR/IZKvCf8p85qyZ7QHz1YFBx7xA9rB18uDbEs60ypzR0tp7FwZgMzCF8rEYfZo5fbgsK20Meh6eghrUmp7LhlsFWMX6q4dxGbV61scnwsvwkY7YOsI6iyDpTLZJynZcKLygwOwQzfeHDhuA7yKS4o0A+yZ7MHms3o6N91pJP+blhLsQBvR6XqAimLuFWStg5/fdzlLmIAyhTSXeRW6sIT/Z4Oq8qV0FiFbmoCYB3VEOxaudwPeuo3+MNNV0P1WK5yZ0ZLXDQUzh0HjPzltg3E3lMK3Lt1DYv3VOt+BWeIKc/Ty21zyS3PxPA1RVs7pZoBtxIS9MlUXGbDbV9UqYbPTuZzY1bKiI6ucR/9TbhE6e9ohbjtSjk9fWexaZuJJXPK35xrvYsD+kwKIw16Tz16B3qTkHMHPqD61DNOZK0AYgasm1hCGRyas+jAlPlnWh+yAfsWSp0HJd1IzBmDLz5HpIi3JtZmvXFnT9zLlsakCDvg8JvpXskOiF7fGg/mvMDnxBKm5DbwjaMKIlVayKd9qWSYyVHdhYKVzp3aF6N2YGcy06yn+kn1DmCq8kuHUnMGQ4tUjxWoEbfKpBTO9UfzwOtdps91RsF+EEdG8N2QkbrtGFFjTt4piIFjJA+4M=</string>
+	<key>DEVELOP</key>
+	<true/>
+	<key>SERVER_URL</key>
+	<string>http://dev7.appi.emtg.jp/ar/v0/</string>
+	<key>SERVER_TEST_URL</key>
+	<string>http://dev7.appi.emtg.jp/ar/v0/</string>
+	<key>SERVER_MEMBER_AUTH_URL</key>
+	<string>https://dev-secure.plusmember.jp/</string>
+	<key>SERVER_TEST_MEMBER_AUTH_URL</key>
+	<string>https://dev-secure.plusmember.jp/</string>
+	<key>MEMBER_AUTH_SERVICE_CODE</key>
+	<string>kobukuro</string>
+	<key>MEMBER_AUTH_SERVICE_ID</key>
+	<string>220</string>
+	<key>GOOGLE_API_KEY</key>
+	<string>AIzaSyBjkgNKR1np71byx9nh1_Vky4CUW1HXj2M</string>
+</dict>
+</plist>

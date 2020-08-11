@@ -1,0 +1,284 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
+// swift-module-flags: -target arm64-apple-ios9.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name emtgar
+import AVFoundation
+import Compression
+import CoreFoundation
+import CoreGraphics
+import CoreLocation
+import CoreText
+import Foundation
+import GoogleMaps
+import KudanAR
+import Photos
+import Swift
+import SystemConfiguration
+import UIKit
+@_exported import emtgar
+extension Archive {
+  final public func extract(_ entry: emtgar.Entry, to url: Foundation.URL, bufferSize: Swift.UInt32 = defaultReadChunkSize, skipCRC32: Swift.Bool = false, progress: Foundation.Progress? = nil) throws -> emtgar.CRC32
+  final public func extract(_ entry: emtgar.Entry, bufferSize: Swift.UInt32 = defaultReadChunkSize, skipCRC32: Swift.Bool = false, progress: Foundation.Progress? = nil, consumer: (Foundation.Data) throws -> Swift.Void) throws -> emtgar.CRC32
+}
+public var defaultReadChunkSize: Swift.UInt32
+public var defaultWriteChunkSize: Swift.UInt32
+public var defaultFilePermissions: Swift.UInt16
+public var defaultDirectoryPermissions: Swift.UInt16
+public enum CompressionMethod : Swift.UInt16 {
+  case none
+  case deflate
+  public typealias RawValue = Swift.UInt16
+  public init?(rawValue: Swift.UInt16)
+  public var rawValue: Swift.UInt16 {
+    get
+  }
+}
+final public class Archive : Swift.Sequence {
+  public enum ArchiveError : Swift.Error {
+    case unreadableArchive
+    case unwritableArchive
+    case invalidEntryPath
+    case invalidCompressionMethod
+    case invalidStartOfCentralDirectoryOffset
+    case missingEndOfCentralDirectoryRecord
+    case cancelledOperation
+    public static func == (a: emtgar.Archive.ArchiveError, b: emtgar.Archive.ArchiveError) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+  }
+  public enum AccessMode : Swift.UInt {
+    case create
+    case read
+    case update
+    public typealias RawValue = Swift.UInt
+    public init?(rawValue: Swift.UInt)
+    public var rawValue: Swift.UInt {
+      get
+    }
+  }
+  final public let url: Foundation.URL
+  final public let accessMode: emtgar.Archive.AccessMode
+  public init?(url: Foundation.URL, accessMode mode: emtgar.Archive.AccessMode, preferredEncoding: Swift.String.Encoding? = nil)
+  public init?(data: Foundation.Data = Data(), accessMode mode: emtgar.Archive.AccessMode, preferredEncoding: Swift.String.Encoding? = nil)
+  @objc deinit
+  final public func makeIterator() -> Swift.AnyIterator<emtgar.Entry>
+  final public subscript(path: Swift.String) -> emtgar.Entry? {
+    get
+  }
+  public typealias Element = emtgar.Entry
+  public typealias Iterator = Swift.AnyIterator<emtgar.Entry>
+}
+extension Archive {
+  final public func totalUnitCountForRemoving(_ entry: emtgar.Entry) -> Swift.Int64
+  final public func totalUnitCountForReading(_ entry: emtgar.Entry) -> Swift.Int64
+  final public func totalUnitCountForAddingItem(at url: Foundation.URL) -> Swift.Int64
+}
+extension Archive {
+  final public var data: Foundation.Data? {
+    get
+  }
+}
+public enum Result<T> {
+  case success(T)
+  case failure(Swift.Error)
+}
+@objc @_inheritsConvenienceInitializers public class EMTGARViewController : KudanAR.ARCameraViewController {
+  @objc override dynamic public func viewDidLoad()
+  @objc override dynamic public func setupContent()
+  @objc deinit
+  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+}
+public typealias CRC32 = Swift.UInt32
+public typealias Consumer = (Foundation.Data) throws -> Swift.Void
+public typealias Provider = (Swift.Int, Swift.Int) throws -> Foundation.Data
+public var crcTable: [Swift.UInt32]
+extension Data {
+  public func crc32(checksum: emtgar.CRC32) -> emtgar.CRC32
+  public static func compress(size: Swift.Int, bufferSize: Swift.Int, provider: (Swift.Int, Swift.Int) throws -> Foundation.Data, consumer: (Foundation.Data) throws -> Swift.Void) throws -> emtgar.CRC32
+  public static func decompress(size: Swift.Int, bufferSize: Swift.Int, skipCRC32: Swift.Bool, provider: (Swift.Int, Swift.Int) throws -> Foundation.Data, consumer: (Foundation.Data) throws -> Swift.Void) throws -> emtgar.CRC32
+}
+@_hasMissingDesignatedInitializers public class ARSDKApplicationDelegate {
+  public static func sharedInstance() -> emtgar.ARSDKApplicationDelegate
+  @available(iOS 13.0, *)
+  public func scene(_ rootView: UIKit.UIViewController, openURL url: Foundation.URL)
+  public func openSchemeUrl(_ rootView: UIKit.UIViewController, open url: Foundation.URL) -> Swift.Bool
+  @objc deinit
+}
+extension FileManager {
+  public func zipItem(at sourceURL: Foundation.URL, to destinationURL: Foundation.URL, shouldKeepParent: Swift.Bool = true, compressionMethod: emtgar.CompressionMethod = .none, progress: Foundation.Progress? = nil) throws
+  public func unzipItem(at sourceURL: Foundation.URL, to destinationURL: Foundation.URL, skipCRC32: Swift.Bool = false, progress: Foundation.Progress? = nil, preferredEncoding: Swift.String.Encoding? = nil) throws
+}
+extension URL {
+  public func isContained(in parentDirectoryURL: Foundation.URL) -> Swift.Bool
+}
+@objc @_inheritsConvenienceInitializers public class ContainerViewController : UIKit.UIViewController {
+  @objc override dynamic public func viewDidLoad()
+  @objc deinit
+  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+}
+extension UIFont {
+  public static func jbs_registerFont(withFilenameString filenameString: Swift.String, bundle: Foundation.Bundle?)
+}
+public struct Entry : Swift.Equatable {
+  public enum EntryType : Swift.Int {
+    case file
+    case directory
+    case symlink
+    public typealias RawValue = Swift.Int
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public func path(using encoding: Swift.String.Encoding) -> Swift.String
+  public var path: Swift.String {
+    get
+  }
+  public var fileAttributes: [Foundation.FileAttributeKey : Any] {
+    get
+  }
+  public var checksum: emtgar.CRC32 {
+    get
+  }
+  public var type: emtgar.Entry.EntryType {
+    get
+  }
+  public var compressedSize: Swift.Int {
+    get
+  }
+  public var uncompressedSize: Swift.Int {
+    get
+  }
+  public static func == (lhs: emtgar.Entry, rhs: emtgar.Entry) -> Swift.Bool
+}
+extension Archive {
+  final public func addEntry(with path: Swift.String, relativeTo baseURL: Foundation.URL, compressionMethod: emtgar.CompressionMethod = .none, bufferSize: Swift.UInt32 = defaultWriteChunkSize, progress: Foundation.Progress? = nil) throws
+  final public func addEntry(with path: Swift.String, type: emtgar.Entry.EntryType, uncompressedSize: Swift.UInt32, modificationDate: Foundation.Date = Date(), permissions: Swift.UInt16? = nil, compressionMethod: emtgar.CompressionMethod = .none, bufferSize: Swift.UInt32 = defaultWriteChunkSize, progress: Foundation.Progress? = nil, provider: (Swift.Int, Swift.Int) throws -> Foundation.Data) throws
+  final public func remove(_ entry: emtgar.Entry, bufferSize: Swift.UInt32 = defaultReadChunkSize, progress: Foundation.Progress? = nil) throws
+}
+@objc @_inheritsConvenienceInitializers public class EMTGARVC : ObjectiveC.NSObject {
+  public class func getBundleEmtgarFramework() -> Foundation.Bundle?
+  public class func startARView() -> emtgar.ContainerViewController
+  public class func EMTGARView() -> emtgar.EMTGARViewController
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc @_inheritsConvenienceInitializers public class StartViewController : UIKit.UIViewController {
+  @objc override dynamic public func viewDidLoad()
+  @objc deinit
+  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+}
+@objc @_inheritsConvenienceInitializers public class CustomFonts : ObjectiveC.NSObject {
+  public enum Style : Swift.CaseIterable {
+    case il
+    case ib
+    public var value: Swift.String {
+      get
+    }
+    public var font: UIKit.UIFont {
+      get
+    }
+    public static func == (a: emtgar.CustomFonts.Style, b: emtgar.CustomFonts.Style) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+    public typealias AllCases = [emtgar.CustomFonts.Style]
+    public static var allCases: [emtgar.CustomFonts.Style] {
+      get
+    }
+  }
+  public static var loadFonts: () -> Swift.Void
+  @objc deinit
+  @objc override dynamic public init()
+}
+public enum ReachabilityError : Swift.Error {
+  case failedToCreateWithAddress(Darwin.sockaddr, Swift.Int32)
+  case failedToCreateWithHostname(Swift.String, Swift.Int32)
+  case unableToSetCallback(Swift.Int32)
+  case unableToSetDispatchQueue(Swift.Int32)
+  case unableToGetFlags(Swift.Int32)
+}
+@available(*, unavailable, renamed: "Notification.Name.reachabilityChanged")
+public var ReachabilityChangedNotification: Foundation.NSNotification.Name
+extension NSNotification.Name {
+  public static var reachabilityChanged: Foundation.Notification.Name
+}
+public class Reachability {
+  public typealias NetworkReachable = (emtgar.Reachability) -> ()
+  public typealias NetworkUnreachable = (emtgar.Reachability) -> ()
+  @available(*, unavailable, renamed: "Connection")
+  public enum NetworkStatus : Swift.CustomStringConvertible {
+    case notReachable
+    case reachableViaWiFi
+    case reachableViaWWAN
+    public var description: Swift.String {
+      get
+    }
+    public static func == (a: emtgar.Reachability.NetworkStatus, b: emtgar.Reachability.NetworkStatus) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+  }
+  public enum Connection : Swift.CustomStringConvertible {
+    @available(*, deprecated, renamed: "unavailable")
+    case none
+    case unavailable
+    case wifi
+    case cellular
+    public var description: Swift.String {
+      get
+    }
+    public static func == (a: emtgar.Reachability.Connection, b: emtgar.Reachability.Connection) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+  }
+  public var whenReachable: emtgar.Reachability.NetworkReachable?
+  public var whenUnreachable: emtgar.Reachability.NetworkUnreachable?
+  @available(*, deprecated, renamed: "allowsCellularConnection")
+  final public let reachableOnWWAN: Swift.Bool
+  public var allowsCellularConnection: Swift.Bool
+  public var notificationCenter: Foundation.NotificationCenter
+  @available(*, deprecated, renamed: "connection.description")
+  public var currentReachabilityString: Swift.String {
+    get
+  }
+  @available(*, unavailable, renamed: "connection")
+  public var currentReachabilityStatus: emtgar.Reachability.Connection {
+    get
+  }
+  public var connection: emtgar.Reachability.Connection {
+    get
+  }
+  required public init(reachabilityRef: SystemConfiguration.SCNetworkReachability, queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main)
+  public convenience init(hostname: Swift.String, queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main) throws
+  public convenience init(queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main) throws
+  @objc deinit
+}
+extension Reachability {
+  public func startNotifier() throws
+  public func stopNotifier()
+  @available(*, deprecated, message: "Please use `connection != .none`")
+  public var isReachable: Swift.Bool {
+    get
+  }
+  @available(*, deprecated, message: "Please use `connection == .cellular`")
+  public var isReachableViaWWAN: Swift.Bool {
+    get
+  }
+  @available(*, deprecated, message: "Please use `connection == .wifi`")
+  public var isReachableViaWiFi: Swift.Bool {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+}
+extension emtgar.EMTGARViewController : ObjectiveC.NSObjectProtocol {}
