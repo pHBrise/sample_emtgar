@@ -14,9 +14,8 @@ Edit value if you need
     - Privacy - Camera Usage Description
     - Add URL Type
     - If use http add App Transport Security Settings set Allow Arbitrary Loads = YES
-￼
-
 7. Open Appdelegate.swift add or update a few methods
+```
     import KudanAR
     import GoogleMaps
     import emtgar
@@ -33,15 +32,17 @@ Edit value if you need
             }
 
     }
-
+```
 8. Open SceneDelegate.swift add or update a few methods
+```
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
                 if let url = URLContexts.first?.url {
                     ARSDKApplicationDelegate.sharedInstance().scene((self.window?.rootViewController)!, openURL: url)
                 }
         }
-
+```
 9. Create WebView  
+```
     import UIKit
     import WebKit
     import emtgar
@@ -95,3 +96,4 @@ Edit value if you need
     }
 }
 
+```
